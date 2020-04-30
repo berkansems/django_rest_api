@@ -66,6 +66,7 @@ def select(request,pk):
 #       return Response(ser.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+#to run query params you should write link like this: 127.0.0.1:8000/search_employee?name=Ali
 @api_view(['GET'])
 def search_employee(request):
     employees=Employee.objects.filter(name=request.query_params['name'])

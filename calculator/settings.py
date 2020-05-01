@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'employee',
     'rest_framework',
+    'car',
     'task'
 ]
 

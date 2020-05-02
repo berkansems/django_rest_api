@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd0%&r2zson&nviddt00(y43!7v9ttwgr+^^v1!l4&aqw@tm6=x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -76,6 +76,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'calculator.wsgi.application'
 
 
+RENDERER=('rest_framework.renderers.JSONRenderer',)
+if DEBUG:
+    RENDERER += ('rest_framework.renderers.BrowsableAPIRenderer',)
+
 REST_FRAMEWORK={
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -90,7 +94,8 @@ REST_FRAMEWORK={
       'rest_framework.filters.SearchFilter',
       'rest_framework.filters.OrderingFilter'
     ),
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination','PAGE_SIZE':2
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination','PAGE_SIZE':2,
+    'DEFAULT_RENDERER_CLASSES': RENDERER
 }
 
 # Database

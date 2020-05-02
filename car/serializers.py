@@ -9,6 +9,13 @@ class PersonSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class CarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Car
+        fields='__all__'
+        #depth=1
+
+class CarReadSerializer(serializers.ModelSerializer):
     person=PersonSerializer()# or just type depth=1
     class Meta:
         model = Car

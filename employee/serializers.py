@@ -34,5 +34,3 @@ class EmployeeSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("you are under 18")
         else:
             return value
-
-

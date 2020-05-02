@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -9,15 +10,10 @@ from .models import Employee
 from .serializers import EmployeeSerializer
 
 @api_view(['POST'])
-def post_employe(request):
-    data ={
-        'name':request.data['name'],
-        'age':request.data['age'],
-        'salary':request.data['salary'],
-        'post':request.data['post']
-    }
+@permission_classes((AllowAny,))
+def post_employee(request):
 
-    ser= EmployeeSerializer(data=data)
+    ser= EmployeeSerializer(data=request.data)
     print(ser)
     if ser.is_valid():
         ser.save()
